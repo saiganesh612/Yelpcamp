@@ -20,7 +20,9 @@ var commentRoutes    = require("./routes/comments"),
 // This link is to run database on local server and will be in production level and this is the place where we can make changes to our code confirm and then transfer data to external servers "mongodb://localhost:27017/Yelp_Camp"
 // =========================
 // This link is to run database on external server and will be in development level and this is the place where we can confirm changes to our code "mongodb+srv://ganesh:TMfbMTMgjUyrIFnz@cluster0.upqp1.mongodb.net/ganesh?retryWrites=true&w=majority"
-mongoose.connect(process.env.DATABASEURL, {
+
+var url = process.env.DATABASEURL || "mongodb://localhost:27017/Yelp_Camp"
+mongoose.connect(url, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
