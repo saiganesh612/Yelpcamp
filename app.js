@@ -60,6 +60,7 @@ app.get("*", (req, res) => {
 	res.send("<h1>404 ERROR: Page Not Found</h1>");	
 });
 
-app.listen(3000, () => {
+var port = process.env.PORT || 3000;
+app.listen(port, () => {
 	console.log("YelpCamp server was started!!!");
 });
