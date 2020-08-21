@@ -16,7 +16,9 @@ var commentRoutes    = require("./routes/comments"),
 	indexRoutes      = require("./routes/index");
 
 // we need to now create a new DB or connect to the existing DB
-mongoose.connect('mongodb://localhost:27017/Yelp_Camp', {
+// mongodb://localhost:27017/Yelp_Camp
+// mongodb+srv://ganesh:TMfbMTMgjUyrIFnz@cluster0.upqp1.mongodb.net/<dbname>?retryWrites=true&w=majority
+mongoose.connect('mongodb+srv://ganesh:TMfbMTMgjUyrIFnz@cluster0.upqp1.mongodb.net/ganesh?retryWrites=true&w=majority', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
