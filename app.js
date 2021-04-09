@@ -6,6 +6,7 @@ var express = require("express"),
 	localStrategy = require("passport-local"),
 	methodOverride = require("method-override"),
 	flash = require("connect-flash"),
+	rateLimit = require("express-rate-limit"),
 	Campground = require("./models/campground"),
 	Comment = require("./models/comment"),
 	User = require("./models/user"),
@@ -20,6 +21,13 @@ mongoose.connect(url, {
 	useNewUrlParser: true,
 	useUnifiedTopology: true
 });
+
+const limiter = new rateLimit({
+	windowMs: 1000 * 60 * 60 * 1,
+	max: 5,
+	message: "Too many accounts created from this IP, please try again after an hour"
+})
+
 // body-parser will parse our data and converts it into JavaScript Object...
 // and it is the way of getting data from "forms".
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -27,6 +35,7 @@ app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
 app.use(methodOverride("_method"));
 app.use(flash());
+app.use(limiter);
 // seed our database with initial data
 // seedDB(); 
 
